@@ -30,20 +30,27 @@ export default class AnimalsComponent extends Component {
         })
     }
 
-    onSubmit = async e => {
+    createAnimal = async e => {
         e.preventDefault();
         const res = await axios.post('http://localhost:4000/api/animals',{name: this.state.name});
         this.setState({name: ''});
         this.getAnimals();
     }
 
+    deleteAnimal = async (animalId) => {
+        const response = window.confirm('are you sure you want to delete it?');
+        if (response) {
+            await axios.delete('http://localhost:4000/api/animals/' + animalId);
+            this.getAnimals();
+        }
+    }
     render() {
         return(
             <>
                 <div className="row">
                     <div className="card card-body">
                         <h3>Create New Animal</h3>
-                        <form onSubmit={this.onSubmit}>
+                        <form onSubmit={this.createAnimal}>
                             <div className="form-group">
                                 <input
                                     type="text"
@@ -83,8 +90,8 @@ export default class AnimalsComponent extends Component {
                                       <td>{animal.name}</td>
                                       <td>{animal.date}</td>
                                       <td>
-                                          <Button variant="outline-warning">Editar</Button>{' '}
-                                          <Button variant="outline-danger">Eliminar</Button>{' '}
+                                          <Button variant="outline-warning">Edit</Button>{' '}
+                                          <Button variant="outline-danger" onClick={() => this.deleteAnimal(animal._id)}>Delete</Button>{' '}
                                       </td>
                                 </tr>
                                     ))
