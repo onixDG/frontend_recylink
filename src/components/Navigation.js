@@ -19,11 +19,6 @@ export default class Navigation extends Component {
                                 Listar
                            </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/create">
-                                Crear
-                           </Link>
-                        </li>
                     </ul>
                 </div>
             </nav>

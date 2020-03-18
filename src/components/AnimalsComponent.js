@@ -44,6 +44,13 @@ export default class AnimalsComponent extends Component {
             this.getAnimals();
         }
     }
+
+     updateAnimal = async (animalId, animalName) => {
+        console.log(animalId);
+        console.log(animalName );
+
+     }
+
     render() {
         return(
             <>
@@ -90,7 +97,6 @@ export default class AnimalsComponent extends Component {
                                       <td>{animal.name}</td>
                                       <td>{animal.date}</td>
                                       <td>
-                                          <Button variant="outline-warning">Edit</Button>{' '}
                                           <Button variant="outline-danger" onClick={() => this.deleteAnimal(animal._id)}>Delete</Button>{' '}
                                       </td>
                                 </tr>
